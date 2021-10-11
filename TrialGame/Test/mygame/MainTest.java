@@ -8,6 +8,7 @@ package mygame;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.collision.CollisionResults;
+import com.jme3.input.FlyByCamera;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
@@ -46,14 +47,14 @@ public class MainTest {
     /**
      * Test of main method, of class Main.
      */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Main.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testMain() {
+//        System.out.println("main");
+//        String[] args = null;
+//        Main.main(args);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
     
     /**
      * Test of simpleInitApp method, of class Main.
@@ -107,32 +108,9 @@ public class MainTest {
 //        fail("The test case is a prototype.");
 //    }
 
-    /**
-     * Test of simpleUpdate method, of class Main.
-     */
-    @Test
-    public void testSimpleUpdate() {
-        System.out.println("simpleUpdate");
-        float tpf = 0.0F;
-        Main instance = new Main();
-        instance.simpleUpdate(tpf);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of simpleRender method, of class Main.
-     */
-    @Test
-    public void testSimpleRender() {
-        System.out.println("simpleRender");
-        RenderManager rm = null;
-        Main instance = new Main();
-        instance.simpleRender(rm);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+   
+    
+   
     /**
      * Test of createPhysicsTestNode method, of class Main.
      */
@@ -148,5 +126,12 @@ public class MainTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
+   @Test
+    public void testCamera() {
+//        Vector3f camDir = app.getCamera().getDirection();
+//        Assert.assertEquals(camDir, new Vector3f(0, 0, -1.0f));
+            FlyByCamera flyBy = app.getFlyByCamera();
+            assertTrue(flyBy.getMoveSpeed() == 10);
+    }
     
 }
