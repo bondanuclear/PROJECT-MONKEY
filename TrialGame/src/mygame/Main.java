@@ -65,19 +65,19 @@ public class Main extends SimpleApplication {
         //flyCam.setEnabled(false);
         //ChaseCamera chaseCam = new ChaseCamera(cam, physicsCylinder, inputManager);
      
-        
     }
 /**
  * 
  * @param x - set coords on x axis
  * @param y - set coords on y axis
  * @param z - set coords on z axis
- * @return Node(Cylinder)
+ * @return Node(MyObject)
  * @see PhysicsTestHelper class
  */
     public Node setPhysicsCylinder(float x, float y, float z) {
         
-        Node physicsCylinder = PhysicsTestHelper.createPhysicsTestNode(assetManager, new CylinderCollisionShape(new Vector3f(1f, 1f, 1.5f)), 5);
+        MyObject cylinder = new MyObject(assetManager,new CylinderCollisionShape(new Vector3f(1f, 1f, 1.5f)), 5 );
+        Node physicsCylinder =  cylinder.createNode();
         physicsCylinder.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(x,y,z));
         rootNode.attachChild(physicsCylinder);
         getPhysicsSpace().add(physicsCylinder);
@@ -88,11 +88,12 @@ public class Main extends SimpleApplication {
  * @see PhysicsTestHelper class
  */
     public void setPlane() {
-        Node node3 = PhysicsTestHelper.createPhysicsTestNode(assetManager, new PlaneCollisionShape(new Plane(new Vector3f(0, 1, 0), 0)), 0);
-        node3.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(0f, -2, 0f));
-        node3.rotate(1f, 0, 0);
-        rootNode.attachChild(node3);
-        getPhysicsSpace().add(node3);
+       MyObject plane = new MyObject(assetManager,new CylinderCollisionShape(new Vector3f(1f, 1f, 1.5f)), 5 );
+        Node physicsPlane =  plane.createNode();
+        physicsPlane.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(0f, -2, 0f));
+        physicsPlane.rotate(1f, 0, 0);
+        rootNode.attachChild(physicsPlane);
+        getPhysicsSpace().add(physicsPlane);
     }
 /**
  * Method which creates 3D mesh floor. 
@@ -100,13 +101,14 @@ public class Main extends SimpleApplication {
  * @see PhysicsTestHelper class
  */
     public void set3dFloor() {
-       
-        Geometry testFloor = PhysicsTestHelper.createMeshTestFloor(assetManager, 40f, Vector3f.UNIT_X);
-        testFloor.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-2f,-2,-2f));
+        MeshFloor meshFloor = new MeshFloor(assetManager, 40f, Vector3f.UNIT_X);
+        Geometry floor3D = meshFloor.createMeshTestFloor();
+        floor3D = PhysicsTestHelper.createMeshTestFloor(assetManager, 40f, Vector3f.UNIT_X);
+        floor3D.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-2f,-2,-2f));
         
-        rootNode.attachChild(testFloor);
+        rootNode.attachChild(floor3D);
         //testFloor.rotate(FastMath.PI / 4, 0, 0);
-        getPhysicsSpace().add(testFloor);
+        getPhysicsSpace().add(floor3D);
     }
 
     @Override

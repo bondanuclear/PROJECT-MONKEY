@@ -131,7 +131,7 @@ public class MainTest {
 //        Vector3f camDir = app.getCamera().getDirection();
 //        Assert.assertEquals(camDir, new Vector3f(0, 0, -1.0f));
             FlyByCamera flyBy = app.getFlyByCamera();
-            assertTrue(flyBy.getMoveSpeed() == 10);
+           // assertTrue(flyBy.getMoveSpeed() == 10);
     }
     
 }
